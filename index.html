@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      background: #1f1f1f;
+      font-size: 2em;
+      font-weight: bold;
+      border-bottom: 2px solid #333;
+    }
+
+    .video-buttons {
+      display: flex;
+      gap: 20px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .video-button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .video-button img {
+      width: 320px;
+      height: 180px;
+      border-radius: 12px;
+      border: 2px solid #555;
+      transition: transform 0.3s ease, border 0.3s ease;
+    }
+
+    .video-button:hover img {
+      transform: scale(1.05);
+      border-color: #00bfff;
+    }
+
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .video-modal iframe {
+      width: 90%;
+      height: 80%;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>📺 Video Hub</header>
+
+<div class="video-buttons">
+  <button class="video-button" onclick="openVideo('https://www.youtube.com/embed/uFydFFzTfuI?autoplay=1')">
+    <img src="https://img.youtube.com/vi/uFydFFzTfuI/hqdefault.jpg" alt="Video 1">
+  </button>
+  <button class="video-button" onclick="openVideo('https://www.youtube.com/embed/uFydFFzTfuI?autoplay=1')">
+    <img src="https://img.youtube.com/vi/uFydFFzTfuI/hqdefault.jpg" alt="Video 2">
+  </button>
+</div>
+
+<div id="videoModal" class="video-modal">
+  <button class="close-btn" onclick="closeVideo()">✖</button>
+  <iframe id="videoFrame" allowfullscreen allow="autoplay"></iframe>
+</div>
+
+<script>
+  function openVideo(url) {
+    const modal = document.getElementById("videoModal");
+    const iframe = document.getElementById("videoFrame");
+    iframe.src = url;
+    modal.style.display = "flex";
+  }
+
+  function closeVideo() {
+    const modal = document.getElementById("videoModal");
+    const iframe = document.getElementById("videoFrame");
+    iframe.src = "";
+    modal.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
